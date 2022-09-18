@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Кулинарный Блог</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Montserrat', sans-serif; background: url('/static/фон.jpg') no-repeat; background-size: 100%;">
+
+<nav class="navbar" style="background-color:#8B4513; position:sticky; top:0;z-index:100;">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href = "/"><i class="fa-solid fa-egg"></i>Главная</a>
+        <a href="/admin" class="btn btn-danger">Администрирование</a>
+
+        <center>
+            <div class="dropdown">
+                <a class="btn btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false"></a>
+
+                <ul class="form-control me-2; dropdown-menu">
+                    <li><a href="{% url 'login' %}" class="dropdown-item"> Авторизация </a></li>
+                    <li><a href="{% url 'register' %}" class="dropdown-item"> Регистрация </a></li>
+                    <li><a href="{% url 'logout' %}" class="dropdown-item"> Выйти </a></li>
+                </ul>
+
+            </div>
+        </center>
+
+        {{request.user}}
+
+        <form class="d-flex" action="{% url 'search_results' %}" role="search" method="get">
+            <input class="form-control me-2" type="search" placeholder="Поиск..." aria-label="Search" name="q">
+            <button class="btn btn-outline-dark" type="submit">Поиск</button>
+        </form>
+    </div>
+
+</nav>
+
+{% block content %}
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
