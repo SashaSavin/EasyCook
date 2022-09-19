@@ -32,31 +32,6 @@ class CustomSuccessMessageMixin:
         return '%s?id=%s' % (self.success_url, self.object.id)
 
 
-# class DetailObjectsView(CustomSuccessMessageMixin, FormMixin, DetailView):
-#     model = Post
-#     template_name = 'detail.html'
-#     context_object_name = 'post'
-#     form_class = CommentForm
-#     success_msg = 'Комментарий создан. Отправлен на модерацию'
-#
-#     def get_success_url(self, **kwargs):
-#         return reverse_lazy('detail', kwargs={'pk':self.get_object().id})
-#
-#     def post(self,request, *args, **kwargs):
-#         form = self.get_form()
-#         if form.is_valid():
-#             return self.form_valid(form)
-#         else:
-#             return self.form_invalid(form)
-#
-#     def form_valid(self, form):
-#         self.object = form.save(commit=False)
-#         self.object.post = self.get_object()
-#         self.object.author = self.request.user
-#         self.object.save()
-#         return super().form_valid(form)
-
-
 class SearchResultsView(ListView):
     '''Класс для поиска'''
     model = Recipe
@@ -67,35 +42,6 @@ class SearchResultsView(ListView):
         query = self.request.GET.get("q")
         object_list = Recipe.objects.filter(Q(ingredients__icontains=query) | Q(title__icontains=query))
         return object_list
-
-
-# class NeedUpdateView(CustomSuccessMessageMixin, LoginRequiredMixin, UpdateView):
-#     model = Post
-#     template_name = 'edit.html'
-#     fields = 'image','title', 'desc'
-#     login_url = '/login/'
-#     redirect_field_name = 'redirect_to'
-#     success_url = '/'
-#     success_msg = 'Запись обновлена'
-#
-#
-# class PostDeleteView(LoginRequiredMixin, DeleteView):
-#     '''Класс для удаления постов'''
-#     model = Post
-#     template_name = 'delete.html'
-#     success_url = '/'
-#     login_url = '/login/'
-#     redirect_field_name = 'redirect_to'
-#
-#
-# class PostCreateView(CustomSuccessMessageMixin, LoginRequiredMixin, CreateView):
-#     model = Post
-#     fields = ['author','image', 'desc', 'title']
-#     login_url = '/login/'
-#     redirect_field_name = 'redirect_to'
-#     template_name = 'create.html'
-#     success_url = '/'
-#     success_msg = 'Запись создана'
 
 
 class ProjectLoginView(AuthUserForm, LoginView):
