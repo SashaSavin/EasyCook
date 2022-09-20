@@ -4,10 +4,10 @@
 <div class="containe m-3">
     <div class="card" style="width: 30rem;">
       <div class="card-body">
-        <h5 class="card-title">Новый маршрут</h5>
+        <h5 class="card-title">New recipe</h5>
             <form method="post" enctype="multipart/form-data">{% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Сохранить">
+                <input type="submit" value="ADD">
             </form>
           </div>
     </div>

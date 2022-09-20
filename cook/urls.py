@@ -1,15 +1,20 @@
 from django.urls import path
-from cook.views import ListObjectsView, ProjectLoginView, RegisterUserView, ProjectLogoutView, SearchResultsView
-# DetailObjectsView, SearchResultsView, NeedUpdateView, PostDeleteView, PostCreateView,
+from cook.views import home_view, IngredientListObjectsView1, IngredientListObjectsView2, ProjectLoginView, \
+    RegisterUserView, ProjectLogoutView, SearchResultsView, AddCreateViewIngredient, AddCreateViewRecipe, \
+    RecipeDetailObjectsView
+    # NeedUpdateView, PostDeleteView, #TODO
 
 urlpatterns = [
-    path('', ListObjectsView.as_view()),
+    path('', home_view),
+    path('action1/', IngredientListObjectsView1.as_view()),
+    path('action2/', IngredientListObjectsView2.as_view()),
     path('search/', SearchResultsView.as_view(), name="search_results"),
-    # path('edit/<int:pk>', NeedUpdateView.as_view(), name = 'edit'),
-    # path('delete/<int:pk>', PostDeleteView.as_view(), name = 'delete'),
-    # path('create/', PostCreateView.as_view(), name = 'create'),
-    # path('detail/<int:pk>', DetailObjectsView.as_view(), name='detail'),
+    path('add_recipe/', AddCreateViewRecipe.as_view(), name='add_recipe'),
+    path('add_ingredient/', AddCreateViewIngredient.as_view(), name='add_ingredient'),
+    path('detail/<int:pk>', RecipeDetailObjectsView.as_view(), name='recipe_detail'),
     path('login/', ProjectLoginView.as_view(), name='login'),
     path('register/', RegisterUserView.as_view(), name='register'),
     path('logout/', ProjectLogoutView.as_view(), name='logout'),
+    # path('edit/<int:pk>', NeedUpdateView.as_view(), name = 'edit'), #TODO
+    # path('delete/<int:pk>', PostDeleteView.as_view(), name = 'delete'), #TODO
 ]
