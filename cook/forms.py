@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from cook.models import Recipe
 
 
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
@@ -23,3 +24,10 @@ class RegisterUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class RecipeForm(forms.ModelForm):
+
+    class Meta:
+        model = Recipe
+        exclude = ['user']

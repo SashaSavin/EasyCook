@@ -3,16 +3,20 @@
 {% block content %}
 
 <section>
-    <div class="container m-5">
+    <div class="container mt-4">
         <div class="row">
-            <div class="card" style="width: 50rem; margin-bottom:15px; background-color: #DCDCDC">
-                <img src="{{recipe.image}}" class="card-img-top" alt="{{recipe.id}}">
+        {% for i in recipe %}
+            <div class="col">
+                <div class="card; items-text" style="width: 18rem; margin-bottom:15px; background-color: #DCDCDC">
+                    <img src="{{i.image.url}}" class="card-img-top" alt="{{i.id}}">
                     <div class="card-body">
-                        <h3 class="card-text"> {{recipe.title}} </h3>
-                        <h4 class="card-text"> {{recipe.ingredients}} </h4>
-                        <p class="card-text"> {{recipe.description}} </p>
+                        <h3 class="card-title">{{i.title}}</h3>
+                        <h5 class="card-text">{{i.ingredients}}</h5>
+                        <p class="card-text">{{i.description}}</p>
                     </div>
+                </div>
             </div>
+        {% endfor %}
         </div>
     </div>
 </section>
@@ -33,5 +37,15 @@
             </div>
     </div>
 </div>
+
+<style>
+    .items-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+</style>
 
 {% endblock %}

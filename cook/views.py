@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import request
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView #UpdateView, DeleteView #TODO
 from cook.models import Ingredient, Recipe
 from django.db.models import Q
-from .forms import AuthUserForm, RegisterUserForm
+from .forms import AuthUserForm, RegisterUserForm, RecipeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -25,10 +26,22 @@ class IngredientListObjectsView2(ListView):
     context_object_name = 'food'
 
 
-class RecipeDetailObjectsView(DetailView):
+class RecipeDetailObjectsView(ListView):
     model = Recipe
     template_name = 'recipe.html'
     context_object_name = 'recipe'
+
+    def choice(request):
+        if request.method == 'POST':
+            form = RecipeForm(request.POST)
+            if form.is_valid():
+                recipe = form.save(commit=False)
+                recipe.user = request.user
+                recipe.save()
+        else:
+            form = RecipeForm()
+
+        return render(request, 'recipe.html', {"recipe_form": form})
 
 
 class CustomSuccessMessageMixin:
