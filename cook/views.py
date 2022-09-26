@@ -13,29 +13,19 @@ def home_view(request):
     return render(request, "main.html", {})
 
 
-# def home_view(request):
-#     if request.user.is_authenticated:
-#         me = request.user.id
-#         ingr = Ingredient.objects.filter(attendees=me)
-#         return render(request, "main.html", {})
-#     else:
-#         messages.success(request, ("You Aren't Authorized To View This Page"))
-#     return render(request, "main.html", {})
-
-
 class IngredientListObjectsView1(ListView):
     model = Ingredient
     template_name = 'action1.html'
     context_object_name = 'food'
 
 
-def choice_view(request):
-    event_list = IngredientForm.objects.all()
-    if request.method == "POST":
-        id_list = request.POST.getlist('boxes')
-        event_list.update(approved=False)
-
-    return render(request, "action2.html", {})
+# def choice_view(request):
+#     event_list = IngredientForm.objects.all()
+#     if request.method == "POST":
+#         id_list = request.POST.getlist('boxes')
+#         event_list.update(approved=False)
+#
+#     return render(request, "action2.html", {})
 
 
 class IngredientListObjectsView2(ListView):
