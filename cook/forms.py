@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from cook.models import Recipe
+from cook.models import Recipe, Ingredient
 
 
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
@@ -26,8 +26,15 @@ class RegisterUserForm(forms.ModelForm):
         return user
 
 
+class IngredientForm(forms.ModelForm):
+
+    class Meta:
+        model = Ingredient
+        fields = ('image', 'title')
+
+
 class RecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        exclude = ['user']
+        fields = ('image', 'title')

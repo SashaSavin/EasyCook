@@ -2,19 +2,21 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <center>
 <section>
     <div class="container mt-3">
         <div class="row">
-        {% for i in recipe %}
+        {% for recipe in recipe_search %}
+
         <div class="col">
-        <div class="card" style="width: 18rem; margin-bottom:15px; background-color: #C0C0C0">
-            <img src="{{i.image.url}}" class="card-img-top" alt="{{i.id}}">
+
+        <div class="card; items-text" style="width: 18rem; margin-bottom:15px; background-color: #C0C0C0">
+            <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.id}}">
             <div class="card-body">
-                <h3 class="card-title">{{i.title}}</h3>
-                <h5 class="card-text">{{i.ingredients}}</h5>
-                <p class="card-text">{{i.description}}</p>
-                <a href="{% url 'recipe_detail' i.id %}" class="btn btn-primary">Read</a>
+                <h3 class="card-title">{{recipe.title}}</h3>
+                <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary">Read</a>
             </div>
         </div>
         </div>
@@ -23,5 +25,17 @@
     </div>
 </section>
 </center>
+
+{% endif %}
+
+<style>
+    .items-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+</style>
 
 {% endblock %}

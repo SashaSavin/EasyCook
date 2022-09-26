@@ -17,15 +17,16 @@
     <div class="container mt-4">
         <div class="row">
 
-        <form action="" method="POST" class="row"> {% csrf_token %}
+        <form action="" method="POST" class="row">
+            {% csrf_token %}
 
-        {% for i in food %}
+        {% for ingredients in food %}
 
             <div class="col">
                 <div class="card" style="width: 11rem; margin-bottom:10px; background-color: #DCDCDC">
-                    <img src="{{i.image.url}}" class="card-img-top" alt="{{i.title}}">
-                    <div class="task-box">
-                        <input class="card-title" type="checkbox"> {{i.title}}
+                    <img src="{{ingredients.image.url}}" class="card-img-top" alt="{{ingredients.title}}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox"> {{ingredients.title}}
                     </div>
                 </div>
             </div>
@@ -36,7 +37,7 @@
                 <table>
                     <tr>
                         <th>
-                            <a><input class="gradient-button" type="submit" value="Confirm"></a>
+                            <button class='gradient-button' type="submit">Confirm</button>
                         </th>
                     </tr>
                 </table>

@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<center>
-    <a href="/action1" class="gradient-button">Let's begin!</a>
-</center>
+
+    {% if user.is_authenticated %}
+        <li>
+            <center>
+                <a href="/action1" class="gradient-button">Let's begin!</a>
+            </center>
+        </li>
+    {% endif %}
 
 <style>
 .gradient-button {

@@ -11,7 +11,7 @@
         </center>
     </div>
 
-    <a href="/detail" class="gradient-button">Test button #2</a>
+    <a href="/recipe" class="gradient-button">Test button #2</a>
 
 <section>
     <div class="container mt-4">
@@ -19,13 +19,13 @@
 
         <form action="" method="POST" class="row"> {% csrf_token %}
 
-        {% for i in food %}
+        {% for ingredients in food %}
 
             <div class="col">
                 <div class="card" style="width: 11rem; margin-bottom:10px; background-color: #DCDCDC">
-                    <img src="{{i.image.url}}" class="card-img-top" alt="{{i.title}}">
+                    <img src="{{ingredients.image.url}}" class="card-img-top" alt="{{ingredients.title}}">
                     <div class="task-box">
-                        <input class="card-title" type="checkbox"> {{i.title}}
+                        <input class="card-title" type="checkbox"> {{ingredients.title}}
                     </div>
                 </div>
             </div>

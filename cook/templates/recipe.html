@@ -7,13 +7,14 @@
         <div class="row">
         {% for i in recipe %}
             <div class="col">
-                <div class="card; items-text" style="width: 18rem; margin-bottom:15px; background-color: #DCDCDC">
+                <div class="card" style="width: 18rem; margin-bottom:15px; background-color: #DCDCDC">
                     <img src="{{i.image.url}}" class="card-img-top" alt="{{i.id}}">
-                    <div class="card-body">
-                        <h3 class="card-title">{{i.title}}</h3>
-                        <h5 class="card-text">{{i.ingredients}}</h5>
-                        <p class="card-text">{{i.description}}</p>
-                    </div>
+                    <center>
+                        <div class="card-body">
+                            <h3 class="card-title">{{i.title}}</h3>
+                            <a href="{% url 'recipe_detail' i.id %}" class="btn btn-primary">Read</a>
+                        </div>
+                    </center>
                 </div>
             </div>
         {% endfor %}
@@ -37,15 +38,5 @@
             </div>
     </div>
 </div>
-
-<style>
-    .items-text {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 4;
-	-webkit-box-orient: vertical;
-}
-</style>
 
 {% endblock %}
