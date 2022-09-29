@@ -1,7 +1,7 @@
 from django.urls import path
 from cook.views import home_view, IngredientListObjectsView1, IngredientListObjectsView2, ProjectLoginView, \
     RegisterUserView, ProjectLogoutView, SearchResultsView, AddCreateViewIngredient, AddCreateViewRecipe, \
-    RecipeListObjectsView, RecipeDetailObjectsView
+    RecipeListObjectsView, RecipeDetailObjectsView #choice_view
 
 # NeedUpdateView, PostDeleteView, # TODO
 

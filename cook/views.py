@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView #UpdateView, DeleteView #TODO
 from cook.models import Ingredient, Recipe
 from django.db.models import Q
-from .forms import AuthUserForm, RegisterUserForm, IngredientForm
+from .forms import AuthUserForm, RegisterUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -20,12 +20,11 @@ class IngredientListObjectsView1(ListView):
 
 
 # def choice_view(request):
-#     event_list = IngredientForm.objects.all()
+#     ingr = Ingredient.objects.all()
 #     if request.method == "POST":
 #         id_list = request.POST.getlist('boxes')
-#         event_list.update(approved=False)
-#
-#     return render(request, "action2.html", {})
+#         ingr.update(approved=False)
+#     return render(request, "action1.html", {})
 
 
 class IngredientListObjectsView2(ListView):
