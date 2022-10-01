@@ -1,21 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
+<h1 class="m-4">Регистрация</h1>
 <div class="container m-4">
+  <div class="col-2">
+    <form action="" method="post">
+        <div
+        class="card"
+        style="width: 18rem; box-shadow: 1px 1px 5px rgb(55, 55, 55)"
+      >
 
-    <h1 class="text-white mt-3">Registration</h1>
-
-        <div class="text-white col-2">
-
-            <form action="" method="post">
-		        {% csrf_token %}
-                {{form}}
-                <input type="submit" class="btn btn-secondary mt-3" value="Registration">
-            </form>
-
+       <div class="card-body">
+          {% csrf_token %}
+            <label>Ваш новый логин будет...:</label>
+            {{form.username}}
+            <label>Ваш пароль будет...:</label>
+            {{form.password}}
+            <input
+                type="submit"
+                class="btn btn-secondary mt-3"
+                value="Регистрируемся"
+            />
         </div>
+    
 
+    </form>
+  </div>
 </div>
 
 {% endblock %}

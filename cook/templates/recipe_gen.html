@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+
+<center>
+  <div class="container m-2">
+    <h1>Какие продукты у тебя есть?</h1>
+    <form action="" method="post">
+      {% csrf_token %} {{form.as_p}}
+      <input type="submit" value="Отправить" class="btn btn-success" />
+    </form>
+  </div>
+</center>
+
+<div class="container">
+  <h4>Мои продукты</h4>
+  <br />
+  {% for i in ingrs %}
+  <p>
+    {{i}}
+    <a href="/"><button class="btn btn-danger">Удалить</button></a>
+  </p>
+  {% endfor %}
+  <a href="{% url 'recipe_from_user' %}"
+    ><button class="btn btn-success">Найти рецепты</button></a
+  >
+</div>
+{% endblock %}

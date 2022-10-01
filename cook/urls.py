@@ -1,7 +1,7 @@
 from django.urls import path
 from cook.views import home_view, IngredientListObjectsView1, IngredientListObjectsView2, ProjectLoginView, \
     RegisterUserView, ProjectLogoutView, SearchResultsView, AddCreateViewIngredient, AddCreateViewRecipe, \
-    RecipeListObjectsView, RecipeDetailObjectsView #choice_view
+    RecipeListObjectsView, RecipeDetailObjectsView, account_view, recipe_generation_view, recipe_from_user_view #choice_view
 
 # NeedUpdateView, PostDeleteView, # TODO
 
@@ -17,6 +17,11 @@ urlpatterns = [
     path('login/', ProjectLoginView.as_view(), name='login'),
     path('register/', RegisterUserView.as_view(), name='register'),
     path('logout/', ProjectLogoutView.as_view(), name='logout'),
+
+
+    path('account/', account_view, name='account'),
+    path('account/recipe_generation/', recipe_generation_view, name='recipe_generation'),
+    path('account/recipe_from_user/', recipe_from_user_view, name='recipe_from_user'),
     # path('edit/<int:pk>', NeedUpdateView.as_view(), name = 'edit'), #TODO
     # path('delete/<int:pk>', PostDeleteView.as_view(), name = 'delete'), #TODO
 ]

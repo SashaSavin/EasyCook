@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container m-4 ">
+      <a href="/"><button class="btn btn-success m-4">На главную</button></a>
+  <div class="row">
+    <div class="col-md-12">
+      {% for i in recipes %}
+      <div class="card" style="width: 18rem; margin-bottom: 10px;">
+        <img class="card-img-top" src="{{ i.image.url }}"  alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">
+          
+            <h3>{{i.title}}</h3>
+            <span>{{i.description}}</span>
+         
+          </p>
+        </div>
+      </div>
+   
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

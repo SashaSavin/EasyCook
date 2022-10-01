@@ -1,0 +1,132 @@
+{% extends 'base.html' %} 
+
+{% block nav %}
+ <nav
+      class="navbar"
+      style="background-color: #70e5a1; position: sticky; top: 0; z-index: 100"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"
+          ><i class="fa-solid fa-egg"></i> Easy Cook</a
+        >
+        {% if user.is_authenticated %}
+        <center>
+          <div class="dropdown">
+            <a
+              class="btn btn btn-success dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Добавить</a
+            >
+
+            <ul class="form-control me-2; dropdown-menu">
+              <li>
+                <a
+                  href="{% url 'add_recipe' %}"
+                  class="btn btn-outline-dark m-2"
+                >
+                  Рецепты
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{% url 'add_ingredient' %}"
+                  class="btn btn-outline-dark m-2"
+                >
+                  Ингридиенты
+                </a>
+              </li>
+            </ul>
+          </div>
+        </center>
+        {% endif %} Привет, {{request.user}}!
+
+        <form
+          class="d-flex"
+          action="{% url 'search_results' %}"
+          role="search"
+          method="get"
+        >
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Ищем..."
+            aria-label="Search"
+            name="q"
+          />
+          <button class="btn btn-outline-dark" type="submit">Найти</button>
+        </form>
+         <a href="{% url 'logout' %}" class="btn btn-outline-dark"> Выйти </a>
+      </div>
+    </nav>
+{% endblock %}
+
+{% block content %} {% if user.is_authenticated %}
+  
+  <center>
+    <h2 class="m-5">Ваш профиль</h2>
+    <h1 class="m-4">{{user.username}}</h1>
+    <a href="/action1" class="bnt btn-success m-3">Мои рецепты</a>
+    <a href="/action1" class="bnt btn-success m-3">Редактировать профиль</a>
+    <a href="/action1" class="bnt btn-success m-3">Случайный рецепт</a>
+    <a href="{% url 'recipe_generation' %}" class="bnt btn-success m-3">Из холодильника</a>
+  </center>
+
+
+  <section>
+  <h2 style="text-align: center; margin-top: 50px "> любимые рецепты </h2>
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Еще один рецепт</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" class="btn btn-success">Посмотреть</a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">Снова рецепт</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-success">Посмотреть</a>
+            </div>
+          </div>
+        </div>
+
+               <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">Еще рецепт</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-success">Посмотреть</a>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}
+{% endblock %}
+
+
+

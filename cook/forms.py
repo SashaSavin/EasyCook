@@ -38,3 +38,8 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ('image', 'title')
+
+class RecipeGenerationForm(forms.Form):
+    ingredient = forms.CharField(label='Продукт', max_length=100)
+
+

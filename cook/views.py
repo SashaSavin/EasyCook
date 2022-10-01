@@ -1,30 +1,25 @@
 from django.contrib import messages
+from django.http import Http404, HttpResponseRedirect
+from django.db.models import F
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView #UpdateView, DeleteView #TODO
-from cook.models import Ingredient, Recipe
+from cook.models import Ingredient, Recipe, UserIngredient
 from django.db.models import Q
 from .forms import AuthUserForm, RegisterUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import RecipeGenerationForm
 
 
 def home_view(request):
     return render(request, "main.html", {})
 
-
+# тут делаем функцию
 class IngredientListObjectsView1(ListView):
     model = Ingredient
     template_name = 'action1.html'
     context_object_name = 'food'
-
-
-# def choice_view(request):
-#     ingr = Ingredient.objects.all()
-#     if request.method == "POST":
-#         id_list = request.POST.getlist('boxes')
-#         ingr.update(approved=False)
-#     return render(request, "action1.html", {})
 
 
 class IngredientListObjectsView2(ListView):
@@ -114,7 +109,7 @@ class SearchResultsView(ListView):
 class ProjectLoginView(AuthUserForm, LoginView):
     form_class = AuthUserForm
     template_name = 'login.html'
-    success_url = '/'
+    success_url = '/account'
 
     def get_success_url(self):
         '''Переопределение метода get_success_url на success_url'''
@@ -124,7 +119,7 @@ class ProjectLoginView(AuthUserForm, LoginView):
 class RegisterUserView(CustomSuccessMessageMixin, CreateView):
     model = User
     template_name = 'register.html'
-    success_url = '/'
+    success_url = '/login'
     form_class = RegisterUserForm
     success_msg = "Пользователь создан"
 
@@ -132,3 +127,30 @@ class RegisterUserView(CustomSuccessMessageMixin, CreateView):
 class ProjectLogoutView(LogoutView):
     '''Класс выхода'''
     next_page = '/'
+
+
+def home_view(request):
+    return render(request, "main.html", {})
+
+def account_view(request):
+    return render(request, "account.html", {})
+
+
+def recipe_generation_view(request):
+        ingrs = UserIngredient.objects.all()
+        if request.method == 'POST':
+            form = RecipeGenerationForm(request.POST)
+            if form.is_valid():
+                 ingredient = form.cleaned_data['ingredient']
+                 user_ingredient = UserIngredient.objects.create(author=request.user, elem=ingredient)
+                 return HttpResponseRedirect('.')
+        
+        else:
+            form = RecipeGenerationForm()
+            
+        return render(request, 'recipe_gen.html', {'form': form, 'ingrs': ingrs})
+
+
+def recipe_from_user_view(request):
+    recipes = Recipe.objects.values('user_ingrs').values()
+    return render(request, 'recipe_from_pr.html', {'recipes': recipes})

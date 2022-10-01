@@ -1,34 +1,107 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-    {% if user.is_authenticated %}
-        <li>
-            <center>
-                <a href="/action1" class="gradient-button">Let's begin!</a>
-            </center>
+{% extends 'base.html' %} {% block content %}
+<section>
+  <h1 style="text-align: center; margin-top: 30px">Рецепт дня</h1>
+        <div class="container">
+    <div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Просмотр</a>
         </li>
-    {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="#">Дискуссия</a>
+        </li>
+      
+        </ul>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Текст рецепта дня, основанного на рейтингах</h5>
+        <p class="card-text">Его можно скачать в pdf</p>
+        <p class="card-text">Его можно обсудить в чат-канале</p>
+
+        <a href="#" class="btn btn-primary">Посмотреть рецепт</a>
+    </div>
+    </div>
+</div>
+
+</section>
+
+<section>
+  <h2 style="text-align: center; margin-top: 30px">Лучшие рецепты</h2>
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Еще один рецепт</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" class="btn btn-success">Посмотреть</a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">Снова рецепт</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-success">Посмотреть</a>
+            </div>
+          </div>
+        </div>
+
+               <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">Еще рецепт</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-success">Посмотреть</a>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 <style>
-.gradient-button {
+  .gradient-button {
     text-decoration: none;
     display: inline-block;
     color: white;
     padding: 20px 30px;
     margin: 10px 20px;
     border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
-    background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+    background-image: linear-gradient(
+      to right,
+      #9eefe1 0%,
+      #4830f0 51%,
+      #9eefe1 100%
+    );
     background-size: 200% auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
-    transition: .5s;
-}
-.gradient-button:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+  }
+  .gradient-button:hover {
     background-position: right center;
-}
+  }
 </style>
 
 {% endblock %}

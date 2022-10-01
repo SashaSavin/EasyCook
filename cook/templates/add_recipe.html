@@ -1,16 +1,17 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="containe m-3">
-    <div class="card" style="width: 30rem;">
-      <div class="card-body">
-        <h5 class="card-title">New recipe</h5>
-            <form method="post" enctype="multipart/form-data">{% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="ADD">
-            </form>
-          </div>
+  <div
+    class="card"
+    style="width: 30rem; box-shadow: 1px 1px 5px rgb(55, 55, 55)"
+  >
+    <div class="card-body">
+      <h5 class="card-title">Добавим рецепт</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
+        <input type="submit" value="Записать" />
+      </form>
     </div>
+  </div>
 </div>
 
 {% endblock %}
