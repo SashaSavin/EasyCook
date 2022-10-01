@@ -9,13 +9,4 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
-# copy entrypoint.sh
-COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /code/entrypoint.sh
-RUN chmod +x /code/entrypoint.sh
-
-
 COPY . /code/
-
-# run entrypoint.sh
-ENTRYPOINT ["/code/entrypoint.sh"]
